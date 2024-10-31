@@ -1,4 +1,5 @@
 import express, { response } from 'express';
+import { formularioLogin, formularioRegister ,formularioPasswordRecovery } from '../controllers/userController.js';
 
 const router = express.Router()
 
@@ -48,5 +49,16 @@ router.patch("/updatePassword/:email/:newPassword/:newPasswordConfirm", function
 router.delete("/deleteUser/:email", function(request, response){
     response.send(`Se ha solicitado la eliminación del usuario asociado al correo: ${request.params.email}`)
 })
+
+/*router.get("/login", function(request, response){
+    response.render("auth/login", {
+        autenticado:false
+
+    })
+});*/
+
+router.get("/login", formularioLogin)
+router.get("/createAccount", formularioRegister)
+router.get("/passwordRecovery", formularioPasswordRecovery)
 
 export default router;
