@@ -13,6 +13,15 @@ import userRoutes from './routes/userRoutes.js'
 //Instanciar nuestra aplicación web
 const app=express()
 
+//Habilitar pug
+app.set('view engine', 'pug')
+app.set('views', './views')
+
+
+//Definir la carpeta publica de recursos estáticos (assets)
+app.use(express.static('public'));
+
+
 //configuramos nuestro servidor web
 const port= 3000; 
 app.listen(port, ()=>{
@@ -22,6 +31,6 @@ app.listen(port, ()=>{
 
 //Routing - Enrutamiento
 app.use('/',generalRoutes);
-app.use('/usuario/',userRoutes);
+app.use('/auth/',userRoutes);
 
 // Probamos las rutas para poder presentar mensajes al usuario a traves del navegador
